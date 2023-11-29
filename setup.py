@@ -103,12 +103,12 @@ compute_caps = os.environ.get("PYCUDWT_CC", None)
 if compute_caps is not None:
     if compute_caps in ["native", "all"]:
         # let nvcc compile for us based on the GPUs availiable
-        nvcc_compile_args.append("-arch={compute_caps}")
+        nvcc_compile_args.append(f"-arch={compute_caps}")
     else:
         for ccap in compute_caps.split(","):
             # we want to compile for specific architecture(s)
             # ex: nvcc -gencode arch=compute_35,code=sm_35 -gencode arch=compute_52,code=sm_52
-            nvcc_compile_args.append("-gencode arch=compute_{ccap},code=sm_{ccap}")
+            nvcc_compile_args.append(f"-gencode arch=compute_{ccap},code=sm_{ccap}")
     
 ext = Extension(
     "pycudwt",
