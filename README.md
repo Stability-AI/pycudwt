@@ -39,9 +39,19 @@ pip install .
 ```
 
 You can specify the compute capability when building the library:  
+
 ```bash
 PYCUDWT_CC=86 pip install .
+
+# or to target multiple specific GPUs
+PYCUDWT_CC=80,90
+
+# or to let nvcc target your current GPU(s)
+PYCUDWT_CC=native
+PYCUDWT_CC=all
 ```
+
+Learn more [here](https://docs.nvidia.com/cuda/cuda-compiler-driver-nvcc/index.html#options-for-steering-gpu-code-generation).
 
 ### Testing
 
