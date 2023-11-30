@@ -249,7 +249,7 @@ class custom_build_ext(build_ext):
 setup(
     name="pycudwt-multitarget",
     author="Pierre Paleo",
-    version="1.0.4",
+    version="1.0.5",
     author_email="pierre.paleo@esrf.fr",
     maintainer="Will Drevo",
     maintainer_email="will.drevo@gmail.com",
