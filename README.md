@@ -1,10 +1,10 @@
-## pycudwt
+## pycudwt-multitarget
 
-pycudwt is a python module for parallel Discrete Wavelet Transform.
-This is a wrapper of [PDWT](https://github.com/pierrepaleo/PDWT).
+`pycudwt-multitarget` is a python module for parallel Discrete Wavelet Transform. This is a fork of the wrapper of [PDWT](https://github.com/pierrepaleo/PDWT).
 
-**Note:** this project was formerly named `pypwt`.
-It has been renamed `pycudwt` to have a spot on [pypi](https://pypi.org/project/pycudwt).
+**Note:** this project is much the same as `pycudwt`, but it has the ability to compile for multiple different GPUs to obviate the need to have separate containers (Docker or enroot) for different instance types having different GPUs (ie: one image for both A100s and H100s).
+
+When these changes are merged back into `pycudwt`, I will no point there and make a note in the new description.
 
 ## Installation
 
@@ -17,7 +17,7 @@ For the tests, you need pywavelets. `python-pywt` is packaged for Debian-like di
 ### Stable version (from pypi)
 
 ```bash
-pip install pycudwt
+pip install pycudwt-multitarget
 ```
 
 ### From conda recipe
@@ -47,7 +47,6 @@ PYCUDWT_CC=86 pip install .
 PYCUDWT_CC=80,90
 
 # or to let nvcc target your current GPU(s)
-PYCUDWT_CC=native
 PYCUDWT_CC=all
 ```
 
@@ -55,7 +54,7 @@ Learn more [here](https://docs.nvidia.com/cuda/cuda-compiler-driver-nvcc/index.h
 
 ### Testing
 
-If `pywt` is available, you can check if pycudwt gives consistent results :
+If `pywavelet` is available, you can check if pycudwt gives consistent results :
 
 ```bash
 cd test
