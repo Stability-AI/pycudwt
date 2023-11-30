@@ -4,7 +4,7 @@
 
 import numpy as np
 import pywt
-from pypwt import Wavelets
+from pycudwt import Wavelets
 from bench import Benchmark
 from testutils import scipy_img, create_data_to_good_size, what_to_params
 
@@ -147,9 +147,9 @@ for wname in Wname:
         def W_pypwt_exec_with_copy(x):
             # Takes the H<->D transfers into account for the benchmark
             if "i" not in what:
-		W_pypwt.set_image(x)
+                W_pypwt.set_image(x)
                 W_pypwt.forward()
-		_ = W_pypwt.coeffs
+                _ = W_pypwt.coeffs
             else: # TODO
                 W_pypwt.inverse()
 

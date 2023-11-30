@@ -20,7 +20,7 @@ except ImportError:
     print("ERROR : could not find the python module pywt")
     sys.exit(1)
 try:
-    from pypwt import Wavelets
+    from pycudwt import Wavelets
 except ImportError:
     print("ERROR: could not load pypwt. Make sure it is installed (python setup.py install --user)")
     sys.exit(1)
