@@ -101,14 +101,15 @@ nvcc_compile_args = ["--ptxas-options=-v", "-c", "--compiler-options", "'-fPIC'"
 # https://docs.nvidia.com/cuda/cuda-compiler-driver-nvcc/index.html#options-for-steering-gpu-code-generation
 compute_caps = os.environ.get("PYCUDWT_CC", None)
 if compute_caps is not None:
-    if compute_caps in ["native", "all"]:
+    compute_caps = compute_caps.strip().lower()
+    if compute_caps in ["all"]:  # "native" should work, but didn't on my machine
         # let nvcc compile for us based on the GPUs availiable
         nvcc_compile_args.append(f"-arch={compute_caps}")
     else:
         for ccap in compute_caps.split(","):
             # we want to compile for specific architecture(s)
             # ex: nvcc -gencode arch=compute_35,code=sm_35 -gencode arch=compute_52,code=sm_52
-            nvcc_compile_args.append(f"-gencode arch=compute_{ccap},code=sm_{ccap}")
+            nvcc_compile_args.extend(["-gencode", f"arch=compute_{ccap},code=sm_{ccap}"])
     
 ext = Extension(
     "pycudwt",
