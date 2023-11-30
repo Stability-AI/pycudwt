@@ -29,11 +29,15 @@
 
 import os
 from os.path import join as pjoin
+from pathlib import Path
 from setuptools import setup
 from distutils.extension import Extension
 from Cython.Distutils import build_ext
 import subprocess
+
 import numpy
+
+long_description = ( Path(__file__).parent / "README.md").read_text()
 
 
 def find_in_path(name, path):
@@ -243,16 +247,15 @@ class custom_build_ext(build_ext):
 
 
 setup(
-    name="pycudwt",
+    name="pycudwt-multitarget",
     author="Pierre Paleo",
-    version="1.0.3",
+    version="1.0.4",
     author_email="pierre.paleo@esrf.fr",
-    maintainer="Pierre Paleo",
-    maintainer_email="pierre.paleo@esrf.fr",
+    maintainer="Will Drevo",
+    maintainer_email="will.drevo@gmail.com",
     install_requires=["numpy"],
-    long_description="""
-    Python Wrapper for Cuda Discrete Wavelet Transform
-    """,
+    long_description=long_description,
+    long_description_content_type="text/markdown",
     ext_modules=[ext],
     # inject our custom trigger
     cmdclass={"build_ext": custom_build_ext},
